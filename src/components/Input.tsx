@@ -1,23 +1,25 @@
-import { ChangeEvent, FC } from 'react'
+import { FC } from 'react'
 import { InputType } from './constants'
+import { UseFormRegister, FieldValues } from 'react-hook-form'
 
 interface InputProps {
   label: string
   name: string
-  value: string
   placeholder: string
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void
-  required?: boolean
+  register: UseFormRegister<FieldValues>
   type?: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  validation?: any
 }
 
 const Input: FC<InputProps> = ({
   label,
   name,
-  value,
   placeholder,
-  onChange,
-  type = InputType.TEXT
+  register,
+  type = InputType.TEXT,
+  validation,
+  ...rest
 }) => {
   return (
     <label htmlFor={name} className="flex flex-col">
@@ -26,10 +28,8 @@ const Input: FC<InputProps> = ({
         type={type}
         className="input"
         placeholder={placeholder}
-        name={name}
-        value={value}
-        onChange={onChange}
-        required
+        {...(register(name), { required: true, ...validation })}
+        {...rest}
       />
     </label>
   )
