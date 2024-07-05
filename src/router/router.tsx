@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom'
-//import ProtectedRoute from '../pages/ProtectedRoute'
 import { Layout } from '../pages/Layout'
 import ErrorPage from '../pages/ErrorPage'
 import Companies from '../pages/Companies'
 import Admin from '../pages/Admin'
 import { AppRoute } from './AppRoute'
 import Auth from '../pages/Auth'
+import ProtectedRoute from '../pages/ProtectedRoute'
 
 // Function to get the access token from cookies
 //const getAccessToken = () => {
@@ -23,14 +23,22 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: AppRoute.HOME,
-        element: <Companies />
-      },
       { path: AppRoute.AUTH, element: <Auth /> },
       {
+        path: AppRoute.HOME,
+        element: (
+          <ProtectedRoute>
+            <Companies />
+          </ProtectedRoute>
+        )
+      },
+      {
         path: AppRoute.ADMIN,
-        element: <Admin />
+        element: (
+          <ProtectedRoute requireAdmin>
+            <Admin />
+          </ProtectedRoute>
+        )
       }
     ]
   }

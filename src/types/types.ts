@@ -2,6 +2,7 @@ export interface IUser {
   id: string
   email: string
   token: string
+  role?: string
 }
 export interface IUserData {
   email?: string
@@ -27,6 +28,7 @@ export interface IResponseUser {
   password: string
   createdAt: string
   updatedAt: string
+  role?: string
 }
 export interface IResponseUserData {
   token: string
@@ -43,4 +45,9 @@ export interface ICompany {
   companyType: string
   createdAt?: string
   updatedAt?: string
+}
+
+export enum UserRole {
+  USER = 'user',
+  ADMIN = 'admin'
 }

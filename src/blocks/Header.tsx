@@ -4,6 +4,10 @@ import { Link, NavLink } from 'react-router-dom'
 import { FaSignOutAlt } from 'react-icons/fa'
 import { TbBuildingWarehouse } from 'react-icons/tb'
 import { AppRoute } from '../router/AppRoute'
+import { useAuth } from '../hooks/useAuth'
+import { useDispatch } from 'react-redux'
+import { logout } from '../store/reducers/user/userSlice'
+import { removeTokenFromLocalStorage } from '../helpers/getTokenFromLocalStorage'
 //import { useAuth } from '../hooks/useAuth'
 //import { useDispatch } from 'react-redux'
 //import { logout, selectUserId } from '../store/user/userSlice'
@@ -12,13 +16,14 @@ import { AppRoute } from '../router/AppRoute'
 //import { useSelector } from 'react-redux'
 
 export const Header: FC = () => {
-  const isAuth = true
-  //const dispatch = useDispatch()
+  const { isAuth, isAdmin } = useAuth()
+  const dispatch = useDispatch()
   //const profileId = useSelector(selectUserId)
+  console.log(isAuth, isAdmin)
 
   const logoutHandler = () => {
-    // dispatch(logout())
-    // removeTokenFromLocalStorage('token')
+    dispatch(logout())
+    removeTokenFromLocalStorage('token')
     // toast.success('You logged out')
   }
 

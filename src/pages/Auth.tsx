@@ -1,21 +1,19 @@
 import { FC, useState } from 'react'
 import { IUserData } from '../types/types'
 import RadioGroup from '../components/RadioGroup.tsx/RadioGroup'
-
-import { useForm } from 'react-hook-form'
 //import { emailValidation } from '../helpers/emailValidation'
 import Form from '../components/Form'
+import { AuthOption, authOptions } from './constants'
 //import { AuthService } from '../services/auth.service'
 //import { toast } from 'react-toastify'
 //import { setTokenToLocalStorage } from '../helpers/localstorage.helper'
-//import { useAppDispatch } from '../store/hooks'
 //import { login } from '../store/user/userSlice'
 //import { useNavigate } from 'react-router-dom'
 //import { IUserData } from '../types/types'
 //import { ProfileInputs } from '../components/ProfileInputs'
 
 const Auth: FC = () => {
-  const [isLogin] = useState<boolean>(false)
+  const [isLogin, setIsLogin] = useState<boolean>(true)
   const defaultValues: IUserData = {
     email: '',
     password: '',
@@ -26,11 +24,6 @@ const Auth: FC = () => {
     description: '',
     position: ''
   }
-  const { register, handleSubmit } = useForm<IUserData>({
-    defaultValues
-  })
-
-  //const dispatch = useAppDispatch()
   //const navigate = useNavigate()
 
   //const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -79,39 +72,22 @@ const Auth: FC = () => {
   // }
 
   const handleRadioChange = (value: string) => {
-    console.log('Selected option:', value)
+    return value === AuthOption.SIGNIN ? setIsLogin(true) : setIsLogin(false)
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const submitHandler = (data: any) => {
-    if (isLogin) {
-      console.log('Login data:', data)
-      // Implement login logic
-    } else {
-      console.log('Registration data:', data)
-      // Implement registration logic
-    }
-  }
 
   return (
     <div className="mt-2 flex flex-col justify-center items-center text-white">
       <div className="flex mb-2 gap-2">
         <RadioGroup
           name="auth"
-          options={[
-            { value: 'signUp', label: 'Sign Up' },
-            { value: 'signIn', label: 'Sign In' }
-          ]}
-          defaultValue="signUp"
+          options={authOptions}
+          defaultValue={AuthOption.SIGNIN}
           onChange={handleRadioChange}
         />
       </div>
-      <Form
-        onSubmit={handleSubmit(submitHandler)}
-        register={register}
-        defaultValues={defaultValues}
-        isLogin={isLogin}
-      >
+      <Form isLogin={isLogin} defaultValues={defaultValues}>
         <button className="btn mt-1 btn-green mx-auto">Submit</button>
       </Form>
     </div>

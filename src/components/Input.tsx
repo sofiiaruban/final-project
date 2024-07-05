@@ -18,7 +18,6 @@ const Input: FC<InputProps> = ({
   placeholder,
   register,
   type = InputType.TEXT,
-  validation,
   ...rest
 }) => {
   return (
@@ -28,7 +27,7 @@ const Input: FC<InputProps> = ({
         type={type}
         className="input"
         placeholder={placeholder}
-        {...(register(name), { required: true, ...validation })}
+        {...register(name)}
         {...rest}
       />
     </label>

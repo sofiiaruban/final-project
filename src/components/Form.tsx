@@ -2,25 +2,56 @@
 import { FC, ReactNode } from 'react'
 import { InputType } from './constants'
 import Input from './Input'
-import { emailValidator } from '../helpers/emailValidator'
+import { IUserData } from '../types/types'
+import { useForm } from 'react-hook-form'
+import { useAppDispatch } from '../store/hooks'
+import { AppRoute } from '../router/AppRoute'
+import { useNavigate } from 'react-router-dom'
+import { loginUser } from '../store/thunks/auth/loginUser'
+import { registerUser } from '../store/thunks/auth/registerUser'
 
 interface FormProps {
   defaultValues?: Record<string, any>
   children: ReactNode | ReactNode[]
-  register: any
-  onSubmit: (data: any) => void
+  register?: any
+  onSubmit?: (data: any) => void
   isLogin: boolean
 }
+const defaultValues: IUserData = {
+  email: '',
+  password: '',
+  phoneNumber: '',
+  lastName: '',
+  firstName: '',
+  nickname: '',
+  description: '',
+  position: ''
+}
+const Form: FC<FormProps> = ({ children, isLogin }) => {
+  const { register, handleSubmit } = useForm<IUserData>({ defaultValues })
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
-const Form: FC<FormProps> = ({ children, isLogin, onSubmit, register }) => {
+  const submitHandler = (data: IUserData) => {
+    if (isLogin) {
+      dispatch(loginUser(data))
+      navigate(AppRoute.HOME)
+    }
+    if (!isLogin) {
+      dispatch(registerUser(data))
+    }
+  }
+
   return (
-    <form onSubmit={onSubmit} className="flex w-1/3 flex-col mx-auto gap-1">
+    <form
+      onSubmit={handleSubmit(submitHandler)}
+      className="flex w-1/3 flex-col mx-auto gap-1"
+    >
       <Input
         label="Email"
         name="email"
         placeholder="Email"
         register={register}
-        validation={emailValidator}
       />
       <Input
         type={InputType.PASSWORD}
