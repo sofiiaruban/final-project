@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, ReactNode } from 'react'
-import { InputType } from './constants'
-import Input from './Input'
+import { InputType } from '../components/constants'
+import Input from '../components/Input'
 import { IUserData } from '../types/types'
 import { useForm } from 'react-hook-form'
 import { useAppDispatch } from '../store/hooks'

@@ -1,17 +1,28 @@
-import React from 'react'
+import { FC } from 'react'
+import { ButtonColor, ButtonType } from './constants'
 
-interface ReusableButtonProps {
+interface ButtonProps {
   text: string
   isActive: boolean
   onClick: () => void
+  color?: ButtonColor
+  isDisabled?: boolean
+  type?: ButtonType
 }
 
-const Button: React.FC<ReusableButtonProps> = ({ text, isActive, onClick }) => {
+const Button: FC<ButtonProps> = ({
+  text,
+  onClick,
+  color = ButtonColor.GREEN,
+  type = ButtonType.BUTTON,
+  isDisabled
+}) => {
   return (
     <button
-      className={`${isActive ? 'font-bold' : ''} btn btn-grey`}
+      className={`${color}`}
       onClick={onClick}
-      type="button"
+      type={type}
+      disabled={isDisabled}
     >
       {text}
     </button>
