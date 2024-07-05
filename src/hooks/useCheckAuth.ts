@@ -1,8 +1,7 @@
-import { useEffect } from 'react'
 import { getTokenFromLocalStorage } from '../helpers/getTokenFromLocalStorage'
-import { userProfileRequest } from '../store/actions/authActions'
 import { useAppDispatch } from '../store/hooks'
-import { login, logout } from '../store/reducers/user/userSlice'
+import { logout } from '../store/reducers/user/userSlice'
+import { userProfile } from '../store/thunks/auth/userProfile'
 
 const useCheckAuth = () => {
   const token = getTokenFromLocalStorage()
@@ -11,22 +10,14 @@ const useCheckAuth = () => {
   const checkAuth = async () => {
     if (token) {
       try {
-        const data = dispatch(userProfileRequest())
-        if (data) {
-          console.log(data)
-          dispatch(login(data))
-        } else {
-          dispatch(logout())
-        }
+        dispatch(userProfile())
       } catch (error) {
         console.error('Error fetching user profile:', error)
+        dispatch(logout())
       }
     }
   }
-
-  useEffect(() => {
-    checkAuth()
-  }, [])
+  return checkAuth
 }
 
 export default useCheckAuth

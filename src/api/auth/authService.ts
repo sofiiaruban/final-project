@@ -22,7 +22,6 @@ export const AuthService = {
 
   async getProfile(): Promise<IUser | undefined> {
     const { data } = await instance.get<IUser>(ApiRoute.PROFILE)
-
-    if (data) return data
+    return data
   }
 }

@@ -39,13 +39,13 @@ export const USER_PROFILE_SUCCESS = 'USER_PROFILE_SUCCESS'
 export const USER_PROFILE_FAILURE = 'USER_PROFILE_FAILURE'
 
 export const userProfileRequest = () => ({
-  type: LOGIN_REQUEST
+  type: USER_PROFILE_REQUEST
 })
 export const userProfileSuccess = (data: IUser) => ({
-  type: LOGIN_SUCCESS,
+  type: USER_PROFILE_SUCCESS,
   payload: data
 })
 export const userProfileFailure = (error: string) => ({
-  type: LOGIN_FAILURE,
+  type: USER_PROFILE_FAILURE,
   payload: error
 })

@@ -1,7 +1,6 @@
 import { FC, ReactNode } from 'react'
-import { Navigate } from 'react-router-dom'
-import { AppRoute } from '../router/AppRoute'
 import { useAuth } from '../hooks/useAuth'
+import AccessDenied from './AccessDenied'
 
 interface ProtectedRouteProp {
   children: ReactNode
@@ -11,10 +10,13 @@ interface ProtectedRouteProp {
 const ProtectedRoute: FC<ProtectedRouteProp> = ({ children, requireAdmin }) => {
   const { isAuth, isAdmin } = useAuth()
 
-  if ((isAuth && !requireAdmin) || (isAuth && requireAdmin && isAdmin)) {
+  if (isAuth && !requireAdmin) {
     return <>{children}</>
   }
-  return <Navigate to={AppRoute.HOME} />
-}
+  if (isAuth && requireAdmin && isAdmin) {
+    return <>{children}</>
+  }
 
+  return <AccessDenied />
+}
 export default ProtectedRoute

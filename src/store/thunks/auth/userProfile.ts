@@ -5,14 +5,15 @@ import {
 } from '../../actions/authActions'
 import { Dispatch } from 'redux'
 import { AuthService } from '../../../api/auth/authService'
+import { login } from '../../reducers/user/userSlice'
 
-export const userProfile = () => async () => {
+export const userProfile = () => {
   return async (dispatch: Dispatch) => {
     dispatch(userProfileRequest())
     try {
       const data = await AuthService.getProfile()
       dispatch(userProfileSuccess(data!))
-      console.log(data)
+      dispatch(login(data!))
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       dispatch(userProfileFailure(error.message))
