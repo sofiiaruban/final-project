@@ -1,35 +1,28 @@
 import { IUserData, IResponseUserData, IUser } from '../../../types/types'
-import {
-  REGISTRATION_REQUEST,
-  REGISTRATION_SUCCESS,
-  REGISTRATION_FAILURE,
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE
-} from './actionTypes'
+import * as actionTypes from './actionTypes'
 
 export const registrationRequest = (userData: IUserData) => ({
-  type: REGISTRATION_REQUEST,
+  type: actionTypes.REGISTRATION_REQUEST,
   payload: userData
 })
 export const registrationSuccess = (data: IResponseUserData) => ({
-  type: REGISTRATION_SUCCESS,
+  type: actionTypes.REGISTRATION_SUCCESS,
   payload: data
 })
 export const registrationFailure = (error: string) => ({
-  type: REGISTRATION_FAILURE,
+  type: actionTypes.REGISTRATION_FAILURE,
   payload: error
 })
 
 export const loginRequest = (userData: IUserData) => ({
-  type: LOGIN_REQUEST,
+  type: actionTypes.LOGIN_REQUEST,
   payload: userData
 })
 export const loginSuccess = (data: IUser) => ({
-  type: LOGIN_SUCCESS,
+  type: actionTypes.LOGIN_SUCCESS,
   payload: data
 })
 export const loginFailure = (error: string) => ({
-  type: LOGIN_FAILURE,
+  type: actionTypes.LOGIN_FAILURE,
   payload: error
 })

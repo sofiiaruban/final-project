@@ -19,6 +19,7 @@ export const Header: FC = () => {
   const userId = useAppSelector((state) => state.user.id)
   console.log(isAuth, isAdmin)
   const navigate = useNavigate()
+
   const logoutHandler = () => {
     dispatch(logout())
     removeTokenFromLocalStorage('token')

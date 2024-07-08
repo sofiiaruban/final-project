@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch } from 'redux'
 import { companyService } from '../../../api/company/companyService'
 import {
@@ -12,9 +13,7 @@ export const fetchCompaniesByUser = () => {
 
     try {
       const data = await companyService.getAllByUser()
-      console.log(data)
       dispatch(fetchCompaniesSuccess(data!))
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       dispatch(fetchCompaniesFailure(error.message))
     }

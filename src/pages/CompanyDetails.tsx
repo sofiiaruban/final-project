@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, useLayoutEffect, useState } from 'react'
+import { FC, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { fetchCompanyById } from '../store/thunks/company/fetchCompanyById'
 import { useParams } from 'react-router-dom'
@@ -9,37 +9,23 @@ const CompanyDetails: FC = () => {
   const dispatch = useAppDispatch()
   const params = useParams()
   const companyId = params.id
-  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (companyId) {
+      dispatch(fetchCompanyById(+companyId))
+    }
+  }, [companyId, dispatch])
 
   const company = useAppSelector((state) => state.company.company)
   const companyLoading = useAppSelector((state) => state.company.loading)
-
-  useLayoutEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (companyId) {
-          await dispatch(fetchCompanyById(+companyId))
-        }
-      } catch (error: any) {
-        setError(error.message)
-      }
-    }
-
-    fetchData()
-
-    return () => {}
-  }, [companyId, dispatch])
+  console.log(company)
 
   if (companyLoading) {
     return <div>Loading...</div>
   }
 
-  if (error) {
-    return <div>Error: {error}</div>
-  }
   return (
     <>
-      {companyLoading && <>Loading...</>}
       {company && !companyLoading && (
         <div className="flex flex-col mx-auto items-center justify-center mt-10">
           <h2 className="text-2xl mb-10 uppercase">{company.name}</h2>
@@ -70,8 +56,10 @@ const CompanyDetails: FC = () => {
                 <td>{company.companyType}</td>
               </tr>
             </tbody>
-            <GoBackButton />
           </table>
+          <div className="w-30">
+            <GoBackButton />
+          </div>
         </div>
       )}
     </>

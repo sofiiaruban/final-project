@@ -1,19 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-import {
-  USER_REQUEST,
-  USER_SUCCESS,
-  USER_FAILURE,
-  USER_PROFILE_SUCCESS,
-  USER_PROFILE_REQUEST,
-  USER_PROFILE_FAILURE,
-  EDIT_PROFILE_REQUEST,
-  EDIT_PROFILE_FAILURE,
-  EDIT_PROFILE_SUCCESS,
-  ALL_USERS_REQUEST,
-  ALL_USERS_SUCCESS,
-  ALL_USERS_FAILURE
-} from '../../actions/user/actionTypes'
+import * as actionTypes from '../../actions/user/actionTypes'
 
 export interface UserState {
   users: any
@@ -33,77 +19,77 @@ const initialState: UserState = {
 
 const userProfileReducer = (state = initialState, action: any): UserState => {
   switch (action.type) {
-    case USER_REQUEST:
+    case actionTypes.USER_REQUEST:
       return {
         ...state,
         loading: true,
         error: null,
         user: action.payload
       }
-    case USER_SUCCESS:
+    case actionTypes.USER_SUCCESS:
       return {
         ...state,
         loading: false,
         user: action.payload
       }
-    case USER_FAILURE:
+    case actionTypes.USER_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload
       }
-    case USER_PROFILE_REQUEST:
+    case actionTypes.USER_PROFILE_REQUEST:
       return {
         ...state,
         loading: true,
         error: null,
         userData: action.payload
       }
-    case USER_PROFILE_SUCCESS:
+    case actionTypes.USER_PROFILE_SUCCESS:
       return {
         ...state,
         loading: false,
         userData: action.payload
       }
-    case USER_PROFILE_FAILURE:
+    case actionTypes.USER_PROFILE_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload
       }
-    case EDIT_PROFILE_REQUEST:
+    case actionTypes.EDIT_PROFILE_REQUEST:
       return {
         ...state,
         loading: true,
         error: null
       }
-    case EDIT_PROFILE_SUCCESS:
+    case actionTypes.EDIT_PROFILE_SUCCESS:
       return {
         ...state,
         loading: false,
         userData: action.payload
       }
-    case EDIT_PROFILE_FAILURE:
+    case actionTypes.EDIT_PROFILE_FAILURE:
       return {
         ...state,
         loading: false,
         error: action.payload
       }
-    case ALL_USERS_REQUEST:
+    case actionTypes.ALL_USERS_REQUEST:
       return {
         ...state,
         loading: true,
         users: action.payload,
         error: null
       }
-    case ALL_USERS_SUCCESS:
+    case actionTypes.ALL_USERS_SUCCESS:
       return {
         ...state,
         loading: false,
         users: action.payload,
         error: null
       }
-    case ALL_USERS_FAILURE:
+    case actionTypes.ALL_USERS_FAILURE:
       return {
         ...state,
         loading: false,

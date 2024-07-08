@@ -68,16 +68,16 @@ export const deleteCompanyFailure = (error: string) => ({
   payload: error
 })
 
-export const adminCompaniesRequest = () => ({
+export const allCompaniesRequest = () => ({
   type: actionTypes.ALL_COMPANIES_REQUEST
 })
 
-export const adminCompaniesSuccess = (companies: ICompany[]) => ({
+export const allCompaniesSuccess = (companies: ICompany[]) => ({
   type: actionTypes.ALL_COMPANIES_SUCCESS,
   payload: companies
 })
 
-export const adminCompaniesFailure = (error: string) => ({
+export const allCompaniesFailure = (error: string) => ({
   type: actionTypes.ALL_COMPANIES_FAILURE,
   payload: error
 })

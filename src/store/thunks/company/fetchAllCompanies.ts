@@ -1,22 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch } from 'redux'
 import { companyService } from '../../../api/company/companyService'
 import {
-  fetchCompaniesRequest,
-  fetchCompaniesSuccess,
-  fetchCompaniesFailure
+  allCompaniesFailure,
+  allCompaniesRequest,
+  allCompaniesSuccess
 } from '../../actions/company/companyActions'
 
 export const fetchAllCompanies = () => {
   return async (dispatch: Dispatch) => {
-    dispatch(fetchCompaniesRequest())
+    dispatch(allCompaniesRequest())
 
     try {
       const data = await companyService.getAll()
       console.log(data)
-      dispatch(fetchCompaniesSuccess(data!))
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      dispatch(allCompaniesSuccess(data!))
     } catch (error: any) {
-      dispatch(fetchCompaniesFailure(error.message))
+      dispatch(allCompaniesFailure(error.message))
     }
   }
 }
