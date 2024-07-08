@@ -17,7 +17,7 @@ The app allows users to manage company data<br>
 
 # Technologies
 FrontEnd - React, Redux, Redux-Thunk, Vite<br>
-BackEnd - Nest,  PostgreSQL, TypeORM
+[Backend Repository](https://github.com/sofiiaruban/final-project-backend) - Nest,  PostgreSQL, TypeORM 
 # Screenshots 
 
 ## Sign Up
