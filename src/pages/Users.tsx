@@ -7,6 +7,7 @@ import ButtonIcon from '../components/ButtonIcon'
 import ModalBox from '../components/ModalBox'
 import useModal from '../hooks/useModalBox'
 import UpdateUserForm from '../blocks/UpdateUserForm'
+import { usersTableHeadings } from './constants'
 
 const Users = () => {
   const { isOpen, openModal, closeModal } = useModal()
@@ -17,7 +18,6 @@ const Users = () => {
   useEffect(() => {
     dispatch(getAllUsers())
   }, [dispatch, isOpen])
-  console.log(users)
 
   return (
     <div className="mt-10 rounded-md bg-slate-800 p-4 w-[82%] mx-auto">
@@ -26,14 +26,11 @@ const Users = () => {
         <table className="table-auto">
           <thead>
             <tr>
-              <th className="font-bold p-2">Id</th>
-              <th className="font-bold p-2">First Name</th>
-              <th className="font-bold p-2">Last Name</th>
-              <th className="font-bold p-2">Nickname</th>
-              <th className="font-bold p-2">Phone Number</th>
-              <th className="font-bold p-2">Position</th>
-              <th className="font-bold p-2">Role</th>
-              <th className="font-bold p-2">Description</th>
+              {usersTableHeadings.map((heading) => (
+                <th key={heading} className="font-bold p-2">
+                  {heading}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>

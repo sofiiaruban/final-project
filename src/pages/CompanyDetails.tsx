@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { fetchCompanyById } from '../store/thunks/company/fetchCompanyById'
 import { useParams } from 'react-router-dom'
 import GoBackButton from '../components/GoBackButton'
+import Loader from '../components/Loader'
 
 const CompanyDetails: FC = () => {
   const dispatch = useAppDispatch()
@@ -18,10 +18,9 @@ const CompanyDetails: FC = () => {
 
   const company = useAppSelector((state) => state.company.company)
   const companyLoading = useAppSelector((state) => state.company.loading)
-  console.log(company)
 
   if (companyLoading) {
-    return <div>Loading...</div>
+    return <Loader />
   }
 
   return (

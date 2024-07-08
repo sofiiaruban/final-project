@@ -14,6 +14,7 @@ import { fetchAllCompanies } from '../store/thunks/company/fetchAllCompanies'
 import { useAuth } from '../hooks/useAuth'
 import TableHeader from '../components/TableHeader'
 import CompanyTableBody from '../blocks/CompanyTableBody'
+import { companiesTableHeadings } from './constants'
 
 const Companies: FC = () => {
   const {
@@ -54,14 +55,13 @@ const Companies: FC = () => {
       closeDeleteModal(event)
     }
   }
-  const tableHeaders = ['Id', 'Name', 'Service', 'Actions']
 
   return (
     <div className="mt-10 rounded-md bg-slate-800 p-4 w-1/2 mx-auto">
       <h1 className="text-xl font-semibold">Your Companies List</h1>
       <div className="mt-2 flex-col mb-2">
         <table className="w-full table-auto">
-          <TableHeader headers={tableHeaders} />
+          <TableHeader headers={companiesTableHeadings} />
           <CompanyTableBody
             companies={companies}
             openEditModal={openEditModal}

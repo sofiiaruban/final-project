@@ -3,7 +3,6 @@ import { ButtonColor, ButtonType } from './constants'
 
 interface ButtonProps {
   text: string
-  isActive: boolean
   onClick?: () => void
   color?: ButtonColor
   isDisabled?: boolean

@@ -105,13 +105,11 @@ const CompanyForm: FC<CompanyFormProps> = ({
           <div className="flex gap-2">
             <Button
               text="Cancel"
-              isActive={false}
               onClick={closeModal}
               color={ButtonColor.ROSE}
             />
             <Button
               text={isAddMode ? 'Create' : 'Save'}
-              isActive={false}
               type={ButtonType.SUBMIT}
             />
           </div>

@@ -69,7 +69,7 @@ const UserProfileForm: FC<UserProfileFormProps> = ({
       />
       <div className="flex gap-2">
         <GoBackButton />
-        <Button text={'Save'} isActive={false} type={ButtonType.SUBMIT} />
+        <Button text="Save" type={ButtonType.SUBMIT} />
       </div>
       <ModalBox isOpen={isOpen} closeModal={closeModal}>
         <p className="text-white">
