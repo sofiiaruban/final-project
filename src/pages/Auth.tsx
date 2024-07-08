@@ -1,16 +1,10 @@
 import { FC, useState } from 'react'
 import { IUserData } from '../types/types'
 import RadioGroup from '../components/RadioGroup.tsx/RadioGroup'
-//import { emailValidation } from '../helpers/emailValidation'
-import Form from '../blocks/Form'
 import { AuthOption, authOptions } from './constants'
-//import { AuthService } from '../services/auth.service'
-//import { toast } from 'react-toastify'
-//import { setTokenToLocalStorage } from '../helpers/localstorage.helper'
-//import { login } from '../store/user/userSlice'
-//import { useNavigate } from 'react-router-dom'
-//import { IUserData } from '../types/types'
-//import { ProfileInputs } from '../components/ProfileInputs'
+import { ButtonType } from '../components/constants'
+import Button from '../components/Button'
+import RegistrationForm from '../blocks/RegistrationForm'
 
 const Auth: FC = () => {
   const [isLogin, setIsLogin] = useState<boolean>(true)
@@ -24,53 +18,6 @@ const Auth: FC = () => {
     description: '',
     position: ''
   }
-  //const navigate = useNavigate()
-
-  //const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-  //  const value = e.target.value
-  //  const name = e.target.name
-  //
-  //  setAuthData((prevData) => ({
-  //    ...prevData,
-  //    [name]: value
-  //  }))
-  //}
-
-  // const loginHandler = async () => {
-  //   //e: React.FormEvent<HTMLFormElement>
-  //   // try {
-  //   //   e.preventDefault()
-  //   //   const data = await AuthService.login({
-  //   //     email: authData.email,
-  //   //     password: authData.password
-  //   //   })
-  //   //   if (data) {
-  //   //     setTokenToLocalStorage('token', data.token)
-  //   //     dispatch(login(data))
-  //   //     toast.success('You logged in')
-  //   //     navigate('/companies')
-  //   //   }
-  //   // } catch (err: any) {
-  //   //   const error = err.response?.data.message
-  //   //   toast.error(error.toString())
-  //   // }
-  // }
-
-  // const registrationHandler = async () => {
-  //   //e: React.FormEvent<HTMLFormElement>
-  //   // try {
-  //   //   e.preventDefault()
-  //   //   const data = await AuthService.registration(authData)
-  //   //   if (data) {
-  //   //     toast.success('Account has been created')
-  //   //     setIsLogIn(!isLogIn)
-  //   //   }
-  //   // } catch (err: any) {
-  //   //   const error = err.response?.data.message
-  //   //   toast.error(error.toString())
-  //   // }
-  // }
-
   const handleRadioChange = (value: string) => {
     return value === AuthOption.SIGNIN ? setIsLogin(true) : setIsLogin(false)
   }
@@ -87,9 +34,9 @@ const Auth: FC = () => {
           onChange={handleRadioChange}
         />
       </div>
-      <Form isLogin={isLogin} defaultValues={defaultValues}>
-        <button className="btn mt-1 btn-green mx-auto">Submit</button>
-      </Form>
+      <RegistrationForm isLogin={isLogin} defaultValues={defaultValues}>
+        <Button isActive={false} type={ButtonType.SUBMIT} text="Submit" />
+      </RegistrationForm>
     </div>
   )
 }

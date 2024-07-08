@@ -5,6 +5,7 @@ export interface IUser {
   role?: string
 }
 export interface IUserData {
+  id?: number
   email?: string
   password?: string
   phoneNumber?: string
@@ -13,6 +14,7 @@ export interface IUserData {
   nickname?: string
   description?: string
   position?: string
+  role?: string
 }
 export interface IProfileData {
   phoneNumber?: string
@@ -35,14 +37,14 @@ export interface IResponseUserData {
   user: IResponseUser
 }
 export interface ICompany {
-  id: number
-  name: string
+  id?: number
+  name?: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  employeeNumber: number | any
-  service: string
-  address: string
-  description: string
-  companyType: string
+  employeeNumber?: number | any
+  service?: string
+  address?: string
+  description?: string
+  companyType?: string
   createdAt?: string
   updatedAt?: string
 }

@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import { loginUser } from '../store/thunks/auth/loginUser'
 import { registerUser } from '../store/thunks/auth/registerUser'
 
-interface FormProps {
+interface RegistrationFormProps {
   defaultValues?: Record<string, any>
   children: ReactNode | ReactNode[]
   register?: any
@@ -27,7 +27,7 @@ const defaultValues: IUserData = {
   description: '',
   position: ''
 }
-const Form: FC<FormProps> = ({ children, isLogin }) => {
+const RegistrationForm: FC<RegistrationFormProps> = ({ children, isLogin }) => {
   const { register, handleSubmit } = useForm<IUserData>({ defaultValues })
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -105,4 +105,4 @@ const Form: FC<FormProps> = ({ children, isLogin }) => {
   )
 }
 
-export default Form
+export default RegistrationForm

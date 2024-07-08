@@ -1,15 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 import {
-  REGISTRATION_REQUEST,
-  REGISTRATION_SUCCESS,
-  REGISTRATION_FAILURE,
+  LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE,
-  USER_PROFILE_REQUEST,
-  USER_PROFILE_SUCCESS,
-  USER_PROFILE_FAILURE
-} from '../../actions/authActions'
+  REGISTRATION_FAILURE,
+  REGISTRATION_REQUEST,
+  REGISTRATION_SUCCESS
+} from '../../actions/auth/actionTypes'
 
 export interface AuthState {
   user: any | null
@@ -65,25 +63,7 @@ const authReducer = (state = initialState, action: any): AuthState => {
         loading: false,
         error: action.payload
       }
-    case USER_PROFILE_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        error: null,
-        user: action.payload
-      }
-    case USER_PROFILE_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        user: action.payload
-      }
-    case USER_PROFILE_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      }
+      
     default:
       return state
   }

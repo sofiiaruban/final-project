@@ -4,7 +4,7 @@ import {
   registrationFailure,
   registrationRequest,
   registrationSuccess
-} from '../../actions/authActions'
+} from '../../actions/auth/authActions'
 import { AuthService } from '../../../api/auth/authService'
 
 export const registerUser = (userData: IUserData) => {

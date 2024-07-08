@@ -6,6 +6,9 @@ import Admin from '../pages/Admin'
 import { AppRoute } from './AppRoute'
 import Auth from '../pages/Auth'
 import ProtectedRoute from '../pages/ProtectedRoute'
+import CompanyDetails from '../pages/CompanyDetails'
+import UserProfile from '../pages/UserProfile'
+import Users from '../pages/Users'
 
 // Function to get the access token from cookies
 //const getAccessToken = () => {
@@ -23,12 +26,39 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      { path: AppRoute.AUTH, element: <Auth /> },
+      {
+        path: AppRoute.AUTH,
+        element: <Auth />
+      },
       {
         path: AppRoute.HOME,
         element: (
           <ProtectedRoute>
             <Companies />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: AppRoute.COMPANY_DETAILS,
+        element: (
+          <ProtectedRoute>
+            <CompanyDetails />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: AppRoute.USERS,
+        element: (
+          <ProtectedRoute>
+            <Users />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: AppRoute.USER_PROFILE,
+        element: (
+          <ProtectedRoute>
+            <UserProfile />
           </ProtectedRoute>
         )
       },

@@ -1,13 +1,14 @@
 import { FC, MouseEventHandler, ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import useModal from '../hooks/useModalBox'
-import { IoIosCloseCircleOutline } from 'react-icons/io'
+import { IoClose } from 'react-icons/io5'
+import ButtonIcon from './ButtonIcon'
 
 interface ModalProps {
-  title: string
   isOpen: boolean
   children: ReactNode
   closeModal: MouseEventHandler<HTMLElement>
+  title?: string
 }
 
 const ModalBox: FC<ModalProps> = ({ title, isOpen, children, closeModal }) => {
@@ -22,14 +23,17 @@ const ModalBox: FC<ModalProps> = ({ title, isOpen, children, closeModal }) => {
       onClick={closeModal}
     >
       <div
-        className="grid gap-2 w-[300px] px-3 py-2 rounded bg-slate-900"
+        className="grid gap-2 w-[300px] px-5 py-4 rounded bg-slate-900"
         onClick={modalPropagationHandle}
       >
         <div className="flex justify-between">
-          <p className="text-white">{title}</p>
-          <button onClick={closeModal} className="text-white">
-            <IoIosCloseCircleOutline />
-          </button>
+          <p className="text-white font-bold">{title}</p>
+          <ButtonIcon
+            onClick={closeModal}
+            classes="text-white hover:text-white/50"
+          >
+            <IoClose />
+          </ButtonIcon>
         </div>
         {children}
       </div>

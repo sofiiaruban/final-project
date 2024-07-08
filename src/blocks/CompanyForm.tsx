@@ -1,80 +1,123 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from 'react-hook-form'
 import Input from '../components/Input'
 import { ICompany } from '../types/types'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import Button from '../components/Button'
-import { ButtonColor } from '../components/constants'
-
-const defaultValues = {
-  id: 0,
-  name: '',
-  service: '',
-  address: '',
-  employeeNumber: 0,
-  description: '',
-  companyType: ''
-}
+import { ButtonColor, ButtonType } from '../components/constants'
+import { useAppDispatch, useAppSelector } from '../store/hooks'
+import { addCompany } from '../store/thunks/company/addCompany'
+import { fetchCompanyById } from '../store/thunks/company/fetchCompanyById'
+import { editCompany } from '../store/thunks/company/editCompany'
 
 interface CompanyFormProps {
   isAddMode?: boolean
+  companyId?: number
+  closeModal: any
 }
-const CompanyForm: FC = ({ isAddMode }) => {
-  const { register, handleSubmit } = useForm<ICompany>({ defaultValues })
+const CompanyForm: FC<CompanyFormProps> = ({
+  isAddMode,
+  companyId,
+  closeModal
+}) => {
+  const dispatch = useAppDispatch()
+  const company = useAppSelector((state) => state.company.company)
+  const companyLoading = useAppSelector((state) => state.company.loading)
+
+  const defaultValues: ICompany = {
+    name: isAddMode ? '' : company?.name,
+    service: isAddMode ? '' : company?.service,
+    address: isAddMode ? '' : company?.address,
+    employeeNumber: isAddMode ? 0 : company?.employeeNumber,
+    description: isAddMode ? '' : company?.description,
+    companyType: isAddMode ? '' : company?.companyType
+  }
+
+  const { register, handleSubmit, reset } = useForm<ICompany>({
+    defaultValues
+  })
+
+  useEffect(() => {
+    if (companyId) {
+      dispatch(fetchCompanyById(companyId))
+    }
+  }, [companyId, dispatch])
+
+  useEffect(() => {
+    reset(company)
+    reset(defaultValues)
+  }, [company, reset, isAddMode])
+
+  const submitHandler = (data: ICompany, event: unknown) => {
+    if (isAddMode && !companyId) {
+      dispatch(addCompany(data))
+    }
+    if (!isAddMode && companyId) {
+      dispatch(editCompany(companyId!, data))
+    }
+    closeModal(event)
+  }
+
   return (
-    <form
-      onSubmit={handleSubmit(submitHandler)}
-      className="flex w-1/3 flex-col mx-auto gap-1"
-    >
-      <Input
-        label="Company title"
-        name="name"
-        placeholder="Company title"
-        register={register}
-      />
-      <Input
-        label="Service of activity"
-        name="service"
-        placeholder="Service of activity"
-        register={register}
-      />
-      <Input
-        label="Address"
-        name="address"
-        placeholder="Address"
-        register={register}
-      />
-      <Input
-        label="Number of employees"
-        name="employeeNumber"
-        placeholder="Number of employees"
-        register={register}
-      />
-      <Input
-        label="Description"
-        name="description"
-        placeholder="Description"
-        register={register}
-      />
-      <Input
-        label="Type"
-        name="companyType"
-        placeholder="Type"
-        register={register}
-      />
-      <div className="flex">
-        <Button
-          text="Close"
-          isActive={false}
-          onClick={() => {}}
-          color={ButtonColor.ROSE}
-        />
-        <Button
-          text={isAddMode ? 'Create' : 'Save'}
-          isActive={false}
-          onClick={() => {}}
-        />
-      </div>
-    </form>
+    <>
+      {companyLoading && !company && <>Loading...</>}
+      {
+        <form
+          onSubmit={handleSubmit(submitHandler)}
+          className="flex w-full flex-col mx-auto gap-1 text-white"
+        >
+          <Input
+            label="Company title"
+            name="name"
+            placeholder="Company title"
+            register={register}
+          />
+          <Input
+            label="Service of activity"
+            name="service"
+            placeholder="Service of activity"
+            register={register}
+          />
+          <Input
+            label="Address"
+            name="address"
+            placeholder="Address"
+            register={register}
+          />
+          <Input
+            label="Number of employees"
+            name="employeeNumber"
+            placeholder="Number of employees"
+            register={register}
+          />
+          <Input
+            label="Description"
+            name="description"
+            placeholder="Description"
+            register={register}
+          />
+          <Input
+            label="Type"
+            name="companyType"
+            placeholder="Type"
+            register={register}
+          />
+          <div className="flex gap-2">
+            <Button
+              text="Close"
+              isActive={false}
+              onClick={closeModal}
+              color={ButtonColor.ROSE}
+            />
+            <Button
+              text={isAddMode ? 'Create' : 'Save'}
+              isActive={false}
+              type={ButtonType.SUBMIT}
+            />
+          </div>
+        </form>
+      }
+    </>
   )
 }
 export default CompanyForm

@@ -1,7 +1,7 @@
 import { getTokenFromLocalStorage } from '../helpers/getTokenFromLocalStorage'
 import { useAppDispatch } from '../store/hooks'
 import { logout } from '../store/reducers/user/userSlice'
-import { userProfile } from '../store/thunks/auth/userProfile'
+import { getUser } from '../store/thunks/user/getUser'
 
 const useCheckAuth = () => {
   const token = getTokenFromLocalStorage()
@@ -10,7 +10,7 @@ const useCheckAuth = () => {
   const checkAuth = async () => {
     if (token) {
       try {
-        dispatch(userProfile())
+        dispatch(getUser())
       } catch (error) {
         console.error('Error fetching user profile:', error)
         dispatch(logout())

@@ -4,7 +4,7 @@ import { ButtonColor, ButtonType } from './constants'
 interface ButtonProps {
   text: string
   isActive: boolean
-  onClick: () => void
+  onClick?: () => void
   color?: ButtonColor
   isDisabled?: boolean
   type?: ButtonType
@@ -19,7 +19,7 @@ const Button: FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={`${color}`}
+      className={`btn ${color} mt-2 mx-auto w-full`}
       onClick={onClick}
       type={type}
       disabled={isDisabled}

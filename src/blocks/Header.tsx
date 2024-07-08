@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { FaSignOutAlt } from 'react-icons/fa'
 import { TbBuildingWarehouse } from 'react-icons/tb'
@@ -8,23 +8,22 @@ import { useAuth } from '../hooks/useAuth'
 import { useDispatch } from 'react-redux'
 import { logout } from '../store/reducers/user/userSlice'
 import { removeTokenFromLocalStorage } from '../helpers/getTokenFromLocalStorage'
-//import { useAuth } from '../hooks/useAuth'
-//import { useDispatch } from 'react-redux'
-//import { logout, selectUserId } from '../store/user/userSlice'
-//import { removeTokenFromLocalStorage } from '../helpers/localstorage.helper'
-//import { toast } from 'react-toastify'
-//import { useSelector } from 'react-redux'
+import { useAppSelector } from '../store/hooks'
+import { ButtonColor } from '../components/constants'
+import ButtonIcon from '../components/ButtonIcon'
+import NavLink from '../components/NavLink'
 
 export const Header: FC = () => {
   const { isAuth, isAdmin } = useAuth()
   const dispatch = useDispatch()
-  //const profileId = useSelector(selectUserId)
-  console.log(isAuth, isAdmin)
 
+  const userId = useAppSelector((state) => state.user.id)
+  console.log(isAuth, isAdmin)
+  const navigate = useNavigate()
   const logoutHandler = () => {
     dispatch(logout())
     removeTokenFromLocalStorage('token')
-    // toast.success('You logged out')
+    navigate(AppRoute.AUTH)
   }
 
   return (
@@ -32,35 +31,22 @@ export const Header: FC = () => {
       <Link to={AppRoute.HOME}>
         <TbBuildingWarehouse size={30} />
       </Link>
-      {isAuth && (
-        <ul className="flex items-center gap-5 ml-auto mr-10">
-          <li>
-            <NavLink
-              to={AppRoute.HOME}
-              className={({ isActive }) =>
-                isActive ? 'text-white' : 'text-white/50'
-              }
-            >
-              Companies
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to={`/user/$`} //PROFILE
-              className={({ isActive }) =>
-                isActive ? 'text-white' : 'text-white/50'
-              }
-            >
-              Profile
-            </NavLink>
-          </li>
-        </ul>
-      )}
+      <ul className="flex items-center gap-5 ml-auto mr-10">
+        {isAuth && <NavLink to={AppRoute.HOME} children="Companies" />}
+        {isAdmin && <NavLink to={AppRoute.USERS} children="Users" />}
+        {isAuth && (
+          <NavLink to={`${AppRoute.USERS}/${userId}`} children="Profile" />
+        )}
+      </ul>
       {isAuth ? (
-        <button className="btn btn-rose" onClick={logoutHandler}>
+        <ButtonIcon
+          color={ButtonColor.ROSE}
+          classes="btn"
+          onClick={logoutHandler}
+        >
           <span>Log Out</span>
           <FaSignOutAlt />
-        </button>
+        </ButtonIcon>
       ) : (
         <Link className="py-2 text-white/50 hover: text-white" to={'auth'}>
           Auth

@@ -5,7 +5,7 @@ import {
   loginFailure,
   loginRequest,
   loginSuccess
-} from '../../actions/authActions'
+} from '../../actions/auth/authActions'
 import { setTokenToLocalStorage } from '../../../helpers/getTokenFromLocalStorage'
 import { login } from '../../reducers/user/userSlice'
 
