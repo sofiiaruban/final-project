@@ -27,7 +27,7 @@ BackEnd - Nest,  PostgreSQL, TypeORM
 
 ## Sign In
 
-[Screenshot 2024-07-08 214238](https://github.com/sofiiaruban/final-project-backend/assets/37212452/e80b3b02-92dc-44ed-a32a-2a6b06b2db7a))
+![Screenshot 2024-07-08 214238](https://github.com/sofiiaruban/final-project-frontend/assets/37212452/33b861c6-0e5a-4c49-8a44-90b460634e51)
 
 ## Companies
 
@@ -35,8 +35,9 @@ BackEnd - Nest,  PostgreSQL, TypeORM
 ![Screenshot 2024-07-08 215714](https://github.com/sofiiaruban/final-project-backend/assets/37212452/6ade3aae-36be-4cd1-86a7-a6e0cd4137b9)
 
 ## Create
+![Screenshot 2024-07-08 215637](https://github.com/sofiiaruban/final-project-frontend/assets/37212452/c94db59a-3ca8-4113-a032-630d1c2b344f)
 
-![Screenshot 2024-07-08 215555](https://github.com/sofiiaruban/final-project-backend/assets/37212452/5a58072c-ff95-461a-888e-e951251ac4b4)
+
 
 ## Edit
 
