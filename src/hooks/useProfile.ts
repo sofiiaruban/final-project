@@ -23,17 +23,17 @@ const useProfile = ({ userId }: UseProfileProps) => {
   const profile = useAppSelector((state) => state.profile.userData)
   const loading = useAppSelector((state) => state.profile.loading)
 
-  const { register, handleSubmit, setValue } = useForm<IUserData>({
-    defaultValues: {
-      lastName: profile?.lastName || '',
-      firstName: profile?.firstName || '',
-      nickname: profile?.nickname || '',
-      phoneNumber: profile?.phoneNumber || '',
-      email: profile?.email || '',
-      description: profile?.description || '',
-      position: profile?.position || ''
-    }
-  })
+  const { register, handleSubmit, setValue } = useForm<IUserData>()
+
+  useEffect(() => {
+    setValue('lastName', profile?.lastName || '')
+    setValue('firstName', profile?.firstName || '')
+    setValue('nickname', profile?.nickname || '')
+    setValue('phoneNumber', profile?.phoneNumber || '')
+    setValue('email', profile?.email || '')
+    setValue('description', profile?.description || '')
+    setValue('position', profile?.position || '')
+  }, [profile, setValue])
 
   const { isOpen, openModal, closeModal } = useModal()
 

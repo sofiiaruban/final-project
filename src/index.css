@@ -19,7 +19,7 @@
     @apply flex gap-2 items-center text-white py-2 px-4 rounded-md disabled:bg-gray-400 disabled:cursor-not-allowed;
   }
   .input {
-    @apply bg-transparent p-2 border bg-slate-700 rounded-md outline-none focus:bg-slate-300 focus:text-black;
+    @apply bg-transparent p-2 border bg-neutral-700 rounded-md outline-none focus:bg-neutral-300 focus:text-black;
   }
   .container {
     @apply max-w-[1000px] mx-auto;

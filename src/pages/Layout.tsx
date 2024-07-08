@@ -4,7 +4,7 @@ import { Header } from '../blocks/Header'
 
 export const Layout: FC = () => {
   return (
-    <div className="min-h-screen bg-slate-900 pb-20 text-white">
+    <div className="min-h-screen bg-neutral-950 pb-20 text-white">
       <Header />
       <div className="container">
         <Outlet />

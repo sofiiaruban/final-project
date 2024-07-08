@@ -2,23 +2,12 @@ import { createBrowserRouter } from 'react-router-dom'
 import { Layout } from '../pages/Layout'
 import ErrorPage from '../pages/ErrorPage'
 import Companies from '../pages/Companies'
-import Admin from '../pages/Admin'
 import { AppRoute } from './AppRoute'
 import Auth from '../pages/Auth'
 import ProtectedRoute from '../pages/ProtectedRoute'
 import CompanyDetails from '../pages/CompanyDetails'
 import UserProfile from '../pages/UserProfile'
 import Users from '../pages/Users'
-
-// Function to get the access token from cookies
-//const getAccessToken = () => {
-//  return Cookies.get('accessToken');
-//}
-//
-//// Function to check if the user is authenticated
-//const isAuthenticated = () => {
-//  return !!getAccessToken();
-//}
 
 const router = createBrowserRouter([
   {
@@ -49,7 +38,7 @@ const router = createBrowserRouter([
       {
         path: AppRoute.USERS,
         element: (
-          <ProtectedRoute>
+          <ProtectedRoute requireAdmin>
             <Users />
           </ProtectedRoute>
         )
@@ -59,14 +48,6 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <UserProfile />
-          </ProtectedRoute>
-        )
-      },
-      {
-        path: AppRoute.ADMIN,
-        element: (
-          <ProtectedRoute requireAdmin>
-            <Admin />
           </ProtectedRoute>
         )
       }

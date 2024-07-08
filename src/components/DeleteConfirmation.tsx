@@ -17,13 +17,8 @@ const DeleteConfirmation: FC<DeleteConfirmationProps> = ({
         Are you sure that you want to delete the company?
       </p>
       <div className="flex gap-2">
-        <Button
-          text="Cancel"
-          isActive={false}
-          onClick={onClose}
-          color={ButtonColor.ROSE}
-        />
-        <Button text="Confirm" isActive={false} onClick={onClick} />
+        <Button text="Cancel" onClick={onClose} color={ButtonColor.ROSE} />
+        <Button text="Confirm" onClick={onClick} />
       </div>
     </>
   )

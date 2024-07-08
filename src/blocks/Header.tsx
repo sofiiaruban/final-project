@@ -27,7 +27,7 @@ export const Header: FC = () => {
   }
 
   return (
-    <header className="flex items-center text-xl justify-between bg-slate-800 px-6 py-3 shadow-sm backdrop-blur-sm">
+    <header className="flex items-center text-xl justify-between bg-neutral-800 px-6 py-3 shadow-sm backdrop-blur-sm">
       <Link to={AppRoute.HOME}>
         <TbBuildingWarehouse size={30} />
       </Link>
@@ -35,7 +35,7 @@ export const Header: FC = () => {
         {isAuth && <NavLink to={AppRoute.HOME} children="Companies" />}
         {isAdmin && <NavLink to={AppRoute.USERS} children="Users" />}
         {isAuth && (
-          <NavLink to={`${AppRoute.USERS}/${userId}`} children="Profile" />
+          <NavLink to={`${AppRoute.USERS}/${userId}`} children="Profile" end />
         )}
       </ul>
       {isAuth ? (

@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { addCompany } from '../store/thunks/company/addCompany'
 import { fetchCompanyById } from '../store/thunks/company/fetchCompanyById'
 import { editCompany } from '../store/thunks/company/editCompany'
+import Loader from '../components/Loader'
 
 interface CompanyFormProps {
   isAddMode?: boolean
@@ -58,9 +59,12 @@ const CompanyForm: FC<CompanyFormProps> = ({
     closeModal(event)
   }
 
+  if (companyLoading) {
+    return <Loader />
+  }
+
   return (
     <>
-      {companyLoading && !company && <>Loading...</>}
       {
         <form
           onSubmit={handleSubmit(submitHandler)}

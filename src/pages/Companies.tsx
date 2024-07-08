@@ -38,6 +38,7 @@ const Companies: FC = () => {
   const companies = useAppSelector(
     (state: RootState) => state.company.companies
   )
+
   const { isAdmin } = useAuth()
 
   useEffect(() => {
@@ -57,8 +58,8 @@ const Companies: FC = () => {
   }
 
   return (
-    <div className="mt-10 rounded-md bg-slate-800 p-4 w-1/2 mx-auto">
-      <h1 className="text-xl font-semibold">Your Companies List</h1>
+    <div className="mt-10 rounded-md bg-neutral-800 p-4 w-1/2 mx-auto">
+      <h1 className="text-xl font-semibold">Companies List</h1>
       <div className="mt-2 flex-col mb-2">
         <table className="w-full table-auto">
           <TableHeader headers={companiesTableHeadings} />

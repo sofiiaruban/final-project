@@ -23,7 +23,7 @@ const ModalBox: FC<ModalProps> = ({ title, isOpen, children, closeModal }) => {
       onClick={closeModal}
     >
       <div
-        className="grid gap-2 w-[300px] px-5 py-4 rounded bg-slate-900"
+        className="grid gap-2 w-[300px] px-5 py-4 rounded bg-neutral-800"
         onClick={modalPropagationHandle}
       >
         <div className="flex justify-between">

@@ -1,17 +1,28 @@
-import { Link } from 'react-router-dom'
+import { FC } from 'react'
 import notFound from '../assets/404.png'
-import { AppRoute } from '../router/AppRoute'
+import accessDenied from '../assets/accessDenied.png'
+import GoBackButton from '../components/GoBackButton'
 
-const ErrorPage = () => {
+interface ErrorPageProp {
+  isAccessDenied?: boolean
+}
+const ErrorPage: FC<ErrorPageProp> = ({ isAccessDenied }) => {
   return (
     <div className="min-h-screen bg-neutral-950 text-white flex justify-center items-center flex-col gap-10">
-      <img src={notFound} />
-      <Link
-        to={AppRoute.HOME}
-        className="bg-teal-400 text-lg hover:bg-teal-500 rounded-lg px-8 py-2 font-semibold"
-      >
-        Back
-      </Link>
+      {isAccessDenied ? (
+        <img
+          src={accessDenied}
+          width={220}
+          height={220}
+          alt="access denied"
+          className="pl-8"
+        />
+      ) : (
+        <img src={notFound} />
+      )}
+      <div className="w-18">
+        <GoBackButton />
+      </div>
     </div>
   )
 }

@@ -21,7 +21,9 @@ const Auth: FC = () => {
   const handleRadioChange = (value: string) => {
     return value === AuthOption.SIGNIN ? setIsLogin(true) : setIsLogin(false)
   }
-
+  const handleLoginForm = () => {
+    setIsLogin(true)
+  }
   return (
     <div className="mt-2 flex flex-col justify-center items-center text-white">
       <div className="flex mb-2 gap-2">
@@ -32,8 +34,14 @@ const Auth: FC = () => {
           onChange={handleRadioChange}
         />
       </div>
-      <RegistrationForm isLogin={isLogin} defaultValues={defaultValues}>
-        <Button type={ButtonType.SUBMIT} text="Submit" />
+      <RegistrationForm
+        isLogin={isLogin}
+        defaultValues={defaultValues}
+        setIsLogin={handleLoginForm}
+      >
+        <div className="w-22">
+          <Button type={ButtonType.SUBMIT} text="Submit" />
+        </div>
       </RegistrationForm>
     </div>
   )

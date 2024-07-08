@@ -4,6 +4,7 @@ import { CgDetailsMore } from 'react-icons/cg'
 import { ICompany } from '../types/types'
 import ButtonIcon from './ButtonIcon'
 import { ButtonType } from './constants'
+import { AppRoute } from '../router/AppRoute'
 
 interface CompanyTableBodyRowProps {
   company: ICompany
@@ -37,12 +38,12 @@ const CompanyTableBodyRow: React.FC<CompanyTableBodyRowProps> = ({
   }
 
   return (
-    <tr className="flex items-center py-2 px-3 rounded-lg bg-blue-600 hover:bg-blue-700 gap-3 mb-2 justify-between">
+    <tr className="flex items-center py-2 px-3 rounded-lg bg-blue-700 hover:bg-blue-600 gap-3 mb-2 justify-between">
       <td>{company.id}</td>
       <td>{company.name}</td>
       <td>{company.service}</td>
       <td className="flex justify-end gap-2">
-        <Link to={`/companies/${company.id}`} className="text-white">
+        <Link to={`${AppRoute.COMPANIES}/${company.id}`} className="text-white">
           <ButtonIcon>
             <CgDetailsMore />
           </ButtonIcon>

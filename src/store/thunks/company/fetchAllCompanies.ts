@@ -13,7 +13,6 @@ export const fetchAllCompanies = () => {
 
     try {
       const data = await companyService.getAll()
-      console.log(data)
       dispatch(allCompaniesSuccess(data!))
     } catch (error: any) {
       dispatch(allCompaniesFailure(error.message))

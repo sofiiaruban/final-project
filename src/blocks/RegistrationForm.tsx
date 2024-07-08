@@ -15,6 +15,7 @@ interface RegistrationFormProps {
   children: ReactNode | ReactNode[]
   register?: any
   onSubmit?: (data: any) => void
+  setIsLogin: () => void
   isLogin: boolean
 }
 const defaultValues: IUserData = {
@@ -27,7 +28,11 @@ const defaultValues: IUserData = {
   description: '',
   position: ''
 }
-const RegistrationForm: FC<RegistrationFormProps> = ({ children, isLogin }) => {
+const RegistrationForm: FC<RegistrationFormProps> = ({
+  children,
+  isLogin,
+  setIsLogin
+}) => {
   const { register, handleSubmit } = useForm<IUserData>({ defaultValues })
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -39,13 +44,14 @@ const RegistrationForm: FC<RegistrationFormProps> = ({ children, isLogin }) => {
     }
     if (!isLogin) {
       dispatch(registerUser(data))
+      setIsLogin()
     }
   }
 
   return (
     <form
       onSubmit={handleSubmit(submitHandler)}
-      className="flex w-1/3 flex-col mx-auto gap-1"
+      className="flex w-1/3 flex-col mx-auto gap-1 justify-center align-middle"
     >
       <Input
         label="Email"
@@ -100,9 +106,10 @@ const RegistrationForm: FC<RegistrationFormProps> = ({ children, isLogin }) => {
           />
         </>
       )}
-      {children}
+      <div className="flex justify-center">{children}</div>
     </form>
   )
 }
 
 export default RegistrationForm
+// Don't have an account yet?  Sign Up

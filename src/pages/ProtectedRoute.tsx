@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 import { useAuth } from '../hooks/useAuth'
-//import AccessDenied from './AccessDenied'
+import ErrorPage from './ErrorPage'
 
 interface ProtectedRouteProp {
   children: ReactNode
@@ -17,6 +17,6 @@ const ProtectedRoute: FC<ProtectedRouteProp> = ({ children, requireAdmin }) => {
     return <>{children}</>
   }
 
-  return <>{children}</> //<AccessDenied />
+  return <ErrorPage isAccessDenied />
 }
 export default ProtectedRoute

@@ -10,12 +10,7 @@ const GoBackButton = () => {
   }
 
   return (
-    <Button
-      text="Go Back"
-      isActive={false}
-      onClick={navigateToHome}
-      color={ButtonColor.ROSE}
-    />
+    <Button text="Go Back" onClick={navigateToHome} color={ButtonColor.ROSE} />
   )
 }
 

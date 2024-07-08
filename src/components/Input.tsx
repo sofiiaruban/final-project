@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC } from 'react'
 import { InputType } from './constants'
 import { UseFormRegister, FieldValues } from 'react-hook-form'
@@ -8,8 +9,6 @@ interface InputProps {
   placeholder: string
   register: UseFormRegister<FieldValues>
   type?: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  validation?: any
 }
 
 const Input: FC<InputProps> = ({
@@ -27,6 +26,7 @@ const Input: FC<InputProps> = ({
         type={type}
         className="input"
         placeholder={placeholder}
+        required
         {...register(name)}
         {...rest}
       />
