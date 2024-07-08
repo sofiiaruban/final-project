@@ -104,7 +104,7 @@ const CompanyForm: FC<CompanyFormProps> = ({
           />
           <div className="flex gap-2">
             <Button
-              text="Close"
+              text="Cancel"
               isActive={false}
               onClick={closeModal}
               color={ButtonColor.ROSE}

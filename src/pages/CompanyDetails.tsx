@@ -3,6 +3,7 @@ import { FC, useLayoutEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { fetchCompanyById } from '../store/thunks/company/fetchCompanyById'
 import { useParams } from 'react-router-dom'
+import GoBackButton from '../components/GoBackButton'
 
 const CompanyDetails: FC = () => {
   const dispatch = useAppDispatch()
@@ -69,6 +70,7 @@ const CompanyDetails: FC = () => {
                 <td>{company.companyType}</td>
               </tr>
             </tbody>
+            <GoBackButton />
           </table>
         </div>
       )}

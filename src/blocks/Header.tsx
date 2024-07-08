@@ -16,7 +16,6 @@ import NavLink from '../components/NavLink'
 export const Header: FC = () => {
   const { isAuth, isAdmin } = useAuth()
   const dispatch = useDispatch()
-
   const userId = useAppSelector((state) => state.user.id)
   console.log(isAuth, isAdmin)
   const navigate = useNavigate()
